@@ -2,8 +2,17 @@ package edu.knoldus
 
 class Function {
 
+  def findElement(number: Int, inputList: List[Int]): Boolean = {
+    inputList match {
+
+      case (head :: tail) => if(number == head) true else findElement(number,tail)
+      case _ => false
+
+    }
+  }
+
   def collatzFunction(number: Int, list: List[Int]): List[Int] = {
-    if (list contains number) {
+    if (findElement(number,list)) {
       list
     }
     else {
