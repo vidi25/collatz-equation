@@ -11,15 +11,15 @@ class Function {
     }
   }
 
-  def collatzFunction(number: Int, list: List[Int]): List[Int] = {
-    if (findElement(number,list)) {
-      list
+  def collatzFunction(number: Int, tempList: List[Int], outputList: List[Int]): List[Int] = {
+    if (findElement(number, outputList)) {
+      outputList
     }
     else {
       number match {
-        case 1 => 1 :: list
-        case number if number % 2 == 0 => collatzFunction(number / 2, number :: list)
-        case _ => collatzFunction(3 * number + 1, number :: list)
+        case 1 => (1 :: tempList) ::: outputList
+        case num if num % 2 == 0 => collatzFunction(number / 2, number :: tempList, outputList)
+        case _ => collatzFunction(3 * number + 1, number :: tempList, outputList)
       }
     }
   }
